@@ -33,3 +33,11 @@ def product(request, product_id):
         'categories': categories,
     }
     return render(request, "myapp/home.html", context)
+
+def subcategory(request, subcategory_id):
+    categories = Category.objects.prefetch_related('subcategories').all()
+    context = {
+        'categories': categories,
+        'subcategory_id': subcategory_id
+    }
+    return render(request, "myapp/home.html", context)
